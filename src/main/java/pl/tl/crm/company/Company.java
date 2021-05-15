@@ -1,4 +1,4 @@
-package pl.tl.crm;
+package pl.tl.crm.company;
 
 
 import lombok.*;
@@ -7,20 +7,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "companies")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Getter
-@Setter
 @ToString
-class Company {
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private int id;
+
     @NonNull
-    String name;
+    private String name;
+
     @NonNull
-    String address;
-    Integer numberNIP;
+    private String address;
+
+    private Integer numberNIP;
 
 }
