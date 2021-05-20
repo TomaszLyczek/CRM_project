@@ -1,8 +1,12 @@
-package pl.tl.crm;
+package pl.tl.crm.item;
 
 
 import lombok.*;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "items")
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -10,9 +14,12 @@ import lombok.*;
 @Setter
 @ToString
 class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
     @NonNull
     String name;
     @NonNull
-    Integer unitPrice;
+    Integer price;
     Integer quantity;
 }
