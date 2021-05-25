@@ -24,6 +24,5 @@ class Offer {
     @ManyToOne
     @NonNull
     Item item;
-
     Integer discount;
 }

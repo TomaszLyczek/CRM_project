@@ -1,9 +1,11 @@
 package pl.tl.crm.item;
 
 
+
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "items")
@@ -18,7 +20,9 @@ class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @NonNull
+    @NotBlank(message = "Name must not be empty")
     String name;
-    @NonNull
+
+   @NonNull
     Integer price;
 }
