@@ -29,6 +29,7 @@ public class CompanyService
 
         return ResponseEntity.ok(objectMapper.writeValueAsString(companies));
     }
+
     @GetMapping(value = "/companies",params = "name")
     public ResponseEntity getCompany(@Param("name") String name) throws JsonProcessingException {
         Optional<Company> company = companyRepository.findByName(name);

@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+//@RepositoryRestResource
 public interface ItemRepository extends JpaRepository<Item,Integer> {
     @Override
     List<Item> findAll();

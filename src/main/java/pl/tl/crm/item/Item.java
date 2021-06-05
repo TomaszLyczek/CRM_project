@@ -1,7 +1,6 @@
 package pl.tl.crm.item;
 
 
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,10 +18,11 @@ class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @NonNull
     @NotBlank(message = "Name must not be empty")
     String name;
 
-   @NonNull
+    @NonNull
     Integer price;
 }
