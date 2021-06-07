@@ -19,9 +19,9 @@ public class OfferService {
     @Autowired
     ObjectMapper objectMapper;
 
-    @GetMapping(name = "offers",params = "id")
-    public ResponseEntity getOffer(@Param("id") Integer id) throws JsonProcessingException {
-        Optional<Offer> offer = offerRepository.findById(id);
+    @GetMapping("/offers")
+    public ResponseEntity getOffer() throws JsonProcessingException {
+        Optional<Offer> offer = offerRepository.findById(3);
         return ResponseEntity.ok(objectMapper.writeValueAsString(offer));
     }
 
