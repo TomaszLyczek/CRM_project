@@ -2,9 +2,9 @@ package pl.tl.crm.item;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import pl.tl.crm.offer.Offer;
+import pl.tl.crm.product.Product;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -20,14 +20,14 @@ import javax.validation.constraints.NotBlank;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @NonNull
-    @NotBlank(message = "Name must not be empty")
-    String name;
+    @ManyToOne
+    private Product product;
 
     @NonNull
-    Integer quantity;
+    private Integer quantity;
 
     @JsonBackReference
     @ManyToOne
