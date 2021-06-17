@@ -29,6 +29,7 @@ public class Item {
     @NonNull
     private Integer quantity;
 
+    @NonNull
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "offer_id")
