@@ -42,7 +42,7 @@ public class OfferService {
 
     //@GetMapping(value = "/offers", params = "id")
     @GetMapping(path = "/offers/{id}")
-    public ResponseEntity getOffer(@PathVariable("id") Integer id) throws JsonProcessingException {
+    public ResponseEntity getOfferById(@PathVariable("id") Integer id) throws JsonProcessingException {
         Optional<Offer> offer = offerRepository.findById(id);
         return ResponseEntity.ok(objectMapper.writeValueAsString(offer));
     }
@@ -93,6 +93,7 @@ public class OfferService {
     ResponseEntity deleteOfferById(@PathVariable("id") Integer id){
         if(offerRepository.existsById(id)){
             offerRepository.deleteById(id);
+
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

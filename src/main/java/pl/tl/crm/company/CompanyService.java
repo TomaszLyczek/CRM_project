@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +21,14 @@ public class CompanyService
     ObjectMapper objectMapper;
 
     @GetMapping("/companies")
-    public ResponseEntity getCompanies() throws JsonProcessingException {
+    public ResponseEntity getAllCompanies() throws JsonProcessingException {
         List<Company> companies = companyRepository.findAll();
 
         return ResponseEntity.ok(objectMapper.writeValueAsString(companies));
     }
 
     @GetMapping(value = "/companies",params = "name")
-    public ResponseEntity getCompany(@Param("name") String name) throws JsonProcessingException {
+    public ResponseEntity getCompanyByName(@Param("name") String name) throws JsonProcessingException {
         Optional<Company> company = companyRepository.findByName(name);
         return ResponseEntity.ok(objectMapper.writeValueAsString(company));
     }
@@ -46,5 +43,14 @@ public class CompanyService
 
         Company savedCompany = companyRepository.save(newCompany);
         return ResponseEntity.ok(objectMapper.writeValueAsString(savedCompany));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/companies/{id}")
+    ResponseEntity deleteCompanyById(@PathVariable("id") Integer id){
+        if (companyRepository.existsById(id)){
+            companyRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
