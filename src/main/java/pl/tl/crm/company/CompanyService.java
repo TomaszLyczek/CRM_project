@@ -27,10 +27,11 @@ public class CompanyService
         return ResponseEntity.ok(objectMapper.writeValueAsString(companies));
     }
 
-    @GetMapping(value = "/companies",params = "name")
-    public ResponseEntity getCompanyByName(@Param("name") String name) throws JsonProcessingException {
-        Optional<Company> company = companyRepository.findByName(name);
-        return ResponseEntity.ok(objectMapper.writeValueAsString(company));
+    @GetMapping(value = "/companies", params = "name")
+    public ResponseEntity getCompaniesByName(@Param("name") String name) throws JsonProcessingException {
+        List<Company> companies = companyRepository.findByNameContaining(name);
+
+        return ResponseEntity.ok(objectMapper.writeValueAsString(companies));
     }
 
     @PostMapping(value = "/companies")
@@ -53,4 +54,6 @@ public class CompanyService
         }
         return ResponseEntity.notFound().build();
     }
+
+
 }
