@@ -21,6 +21,5 @@ public class ItemService {
     public ResponseEntity getItems() throws JsonProcessingException {
         List<Item> itemsFromDb = itemRepository.findAll();
         return ResponseEntity.ok(objectMapper.writeValueAsString(itemsFromDb));
-
     }
 }

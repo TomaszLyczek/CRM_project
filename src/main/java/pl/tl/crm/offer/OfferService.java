@@ -40,7 +40,6 @@ public class OfferService {
         return ResponseEntity.ok(objectMapper.writeValueAsString(offer));
     }
 
-    //@GetMapping(value = "/offers", params = "id")
     @GetMapping(path = "/offers/{id}")
     public ResponseEntity getOfferById(@PathVariable("id") Integer id) throws JsonProcessingException {
         Optional<Offer> offer = offerRepository.findById(id);
